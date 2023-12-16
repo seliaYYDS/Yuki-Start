@@ -214,7 +214,26 @@ function postmusic(songid){
             playbtn.style.backgroundImage = "url('img/pause.png')";
         }
 }
-        
+var mouseX;
+var mouseY;
+document.addEventListener("mousemove",function(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+})
+
+
+function setcurdu(){
+    music.currentTime = music.duration * (((mouseX-64)/336).toFixed(3))
+}
+
+function setvolumn(){
+    console.log(((249-(mouseY-177))/249).toFixed(2));
+    document.getElementById("curvolumn").style.height = 250*((249-(mouseY-177))/249).toFixed(2) + "px";
+    music.volume = ((249-(mouseY-177))/249).toFixed(2);
+}
+
+
+
 function lyric(songid){
     xml = new XMLHttpRequest;
     xml.open("GET","https://www.yukimusicapi.love/lyric?id="+songid)
@@ -225,6 +244,8 @@ function lyric(songid){
         console.log(data);
     }
 }
+
+
 
 
 
