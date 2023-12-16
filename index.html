@@ -34,13 +34,14 @@
             <div id="authur">none</div>
             <div id="duration">00:00/00:00</div>
             <div id="durationbar">
-                <div id="durations"></div>
-                <div id="progress"></div>
-                <div id="durationball"></div>
+                <div id="durations" onclick="setcurdu()"></div>
+                <div id="progress" onclick="setcurdu()"></div>
             </div>
             <div id="playbtn" onclick="playmusic()"></div>
             <div id="replaybtn" onclick="replaymusic()"></div>
             <div id="searchforsong" onclick="showposter()"></div>
+            <div id="volumn" onclick="setvolumn()"></div>
+            <div id="curvolumn" onclick="setvolumn()"></div>
         </div>
         <div id="poster">
             <div id="closebtn" onclick="hideposter()"></div>
