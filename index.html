@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Yuki Start!</title>
+        <link rel="icon" href="img/index.ico">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body onload="onload()">
+        <script src="index.js"></script>
+        <div id="titlebox">
+            <div id="timer">
+                <div id="disptime" align="right">11:45:14</div>
+                <div id="dispdate"align="right">2023.12.32 星期八</div>
+            </div>
+            <div id="decorateline"></div>
+        </div>
+        <div id="searchbox">
+            <div id="enginesel" align="center" onclick="changeengine()"><a id="ename">baidu</a></div>
+            <input id="inputbar">
+            <div id="searchbtn" onclick="search()"></div>
+        </div>
+        <div id="nav">
+            <div id="navicon"></div>
+            <div id="sepline"></div>
+            <div id="musicicon" onclick="showplayer()"></div>
+            <div id="setting" onclicl="showsetting"></div>
+        </div>
+        <div id="musicplayer">
+            <div id="closebtn" onclick="hideplayer()"></div>
+            <div id="songcover"></div>
+            <div id="songname">none</div>
+            <div id="authur">none</div>
+            <div id="duration">00:00/00:00</div>
+            <div id="durationbar">
+                <div id="durations"></div>
+                <div id="progress"></div>
+                <div id="durationball"></div>
+            </div>
+            <div id="playbtn" onclick="playmusic()"></div>
+            <div id="replaybtn" onclick="replaymusic()"></div>
+            <div id="searchforsong" onclick="showposter()"></div>
+        </div>
+        <div id="poster">
+            <div id="closebtn" onclick="hideposter()"></div>
+            <input id="postinput" placeholder="song name...">
+            <div id="search" onclick="searchm()"></div>
+            <ul id="songbox">
+            </ul>
+        </div>
+        
+        <div id="slogan" align="center">Yuki Starts to fall!</div>
+        <div id="footer" align="center">adwadg on top!</div>
+    </body>
+</html>
