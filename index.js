@@ -13,26 +13,27 @@ function disptime(){
     var mo=today.getMonth();
     var yy=today.getFullYear();
     var dd=today.getDate();
+    var dat;
     if(date == 1){
-        datee = "星期一"
+        dat = "星期一"
     }
     else if(date ==2){
-        datee = "星期二"
+        dat = "星期二"
     }
     else if(date ==3){
-        datee = "星期三"
+        dat = "星期三"
     }
     else if(date ==4){
-        datee = "星期四"
+        dat = "星期四"
     }
     else if(date ==5){
-        datee = "星期五"
+        dat = "星期五"
     }
     else if(date ==6){
-        datee = "星期六"
+        dat = "星期六"
     }
-    else if(date ==7){
-        datee = "星期天"
+    else if(date ==0){
+        dat = "星期天"
     }
 
     if(mm<10){  
@@ -42,7 +43,7 @@ function disptime(){
         ss = '0' + ss;
     }
     document.getElementById("disptime").innerHTML=hh+":"+mm+":"+ss+"</a>" ;
-    document.getElementById("dispdate").innerHTML=yy+"."+mo+"."+dd+" "+datee;
+    document.getElementById("dispdate").innerHTML=yy+"."+mo+"."+dd+" "+dat;
 }
 
 
@@ -163,6 +164,13 @@ function searchmusic(keyword){
             if(data.result.songs[i].artists[1]) authur+="/" + data.result.songs[i].artists[1].name;
             if(data.result.songs[i].artists[2]) authur+="/" + data.result.songs[i].artists[2].name;
             if(data.result.songs[i].artists[3]) authur+="/" + data.result.songs[i].artists[3].name;
+            if(data.result.songs[i].artists[4]) authur+="/" + data.result.songs[i].artists[4].name;
+            if(data.result.songs[i].artists[5]) authur+="/" + data.result.songs[i].artists[5].name;
+            if(data.result.songs[i].artists[6]) authur+="/" + data.result.songs[i].artists[6].name;
+            if(data.result.songs[i].artists[7]) authur+="/" + data.result.songs[i].artists[7].name;
+            if(data.result.songs[i].artists[8]) authur+="/" + data.result.songs[i].artists[8].name;
+            if(data.result.songs[i].artists[9]) authur+="/" + data.result.songs[i].artists[9].name;
+
             cursong.innerHTML = data.result.songs[i].name + "   -   "  + authur;
             cursong.value = songid;
             let curid = songid;
@@ -196,6 +204,12 @@ function postmusic(songid){
             if(data.songs[0].ar[1]) authur+="/" + data.songs[0].ar[1].name;
             if(data.songs[0].ar[2]) authur+="/" + data.songs[0].ar[2].name;
             if(data.songs[0].ar[3]) authur+="/" + data.songs[0].ar[3].name;
+            if(data.songs[0].ar[4]) authur+="/" + data.songs[0].ar[4].name;
+            if(data.songs[0].ar[5]) authur+="/" + data.songs[0].ar[5].name;
+            if(data.songs[0].ar[6]) authur+="/" + data.songs[0].ar[6].name;
+            if(data.songs[0].ar[7]) authur+="/" + data.songs[0].ar[7].name;
+            if(data.songs[0].ar[8]) authur+="/" + data.songs[0].ar[8].name;
+            if(data.songs[0].ar[9]) authur+="/" + data.songs[0].ar[9].name;
             document.getElementById("songname").innerHTML = songname;
             console.log(authur);
             document.getElementById("authur").innerHTML = authur;
