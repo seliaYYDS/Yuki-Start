@@ -87,16 +87,11 @@ function search(){
 
 function showplayer(){
     var player=document.getElementById("musicplayer");
-    player.style.left = "50px";
+    player.style.transform= "scale(1)";
 }
 function hideplayer(){
-    hideposter();
     var player=document.getElementById("musicplayer");
-    player.style.left = "-500px";
-}
-
-function play(songurl,songname,coverurl,authur){
-
+    player.style.transform= "scale(0)";
 }
 
 function refreshprogress(){
@@ -111,7 +106,7 @@ function refreshprogress(){
     if(times <10) times = "0"+times; 
     if(ttimes <10) ttimes = "0"+ttimes; 
     document.getElementById("duration").innerHTML = timem+":"+times+"/"+ttimem+":"+ttimes;
-    document.getElementById("progress").style.width = ((music.currentTime/music.duration * 96).toFixed(1)) + "%";
+    document.getElementById("progress").style.width = ((music.currentTime/music.duration * 100).toFixed(1)) + "%";
     if (music.currentTime == music.duration){
         musicstate=0;
         music.pause();
@@ -140,6 +135,7 @@ function replaymusic(){
     music.currentTime=0;
 }
 function searchmusic(keyword){
+    gotoright();
     var xml = new XMLHttpRequest;
     xml.open("GET","https://www.yukimusicapi.love/search?keywords="+keyword);
     xml.send();
@@ -237,13 +233,22 @@ document.addEventListener("mousemove",function(e){
 
 
 function setcurdu(){
-    music.currentTime = music.duration * (((mouseX-64)/336).toFixed(3))
+    start = window.innerWidth/2 -400;
+    console.log(start);
+    relativepos = (start - mouseX) *-1 -7.5;
+    console.log(relativepos);
+    var pros = (relativepos / 799).toFixed(2);
+    music.currentTime = music.duration * pros;
+    console.log(pros);
+    //music.currentTime = music.duration * (((mouseX-64)/336).toFixed(3))
 }
 
 function setvolumn(){
-    console.log(((249-(mouseY-177))/249).toFixed(2));
-    document.getElementById("curvolumn").style.height = 250*((249-(mouseY-177))/249).toFixed(2) + "px";
-    music.volume = ((249-(mouseY-177))/249).toFixed(2);
+    relativepos = ((window.innerWidth/2 - 400) -7.5 + 800 - 10 - mouseX +16) ;
+    var vol = (relativepos / 200).toFixed(2);
+    console.log(vol);
+    document.getElementById("curvolumn").style.width = vol * 200+ "px";
+    music.volume = vol;
 }
 
 
@@ -269,13 +274,15 @@ function searchm(){
     searchmusic(song);
 }
 
-function showposter(){
-    document.getElementById("poster").style.left = "410px"
-}
-function hideposter(){
-    document.getElementById("poster").style.left = "-650px"
-}
 
+function gotoright(){
+    document.getElementById("playmenu").style.left = "-100%";
+    document.getElementById("playertop").style.left = "50%";
+}
+function gotoleft(){
+    document.getElementById("playmenu").style.left = "0%";
+    document.getElementById("playertop").style.left = "0%";
+}
 
 function onupdate(){
     disptime();
