@@ -27,38 +27,41 @@
             <div id="musicicon" onclick="showplayer()"></div>
             <div id="setting" onclicl="showsetting"></div>
         </div>
-        <div id="musicplayer">
-            <div id="playmenu">
-                <div id="playertop">
-                    <input id="postinput">
-                    <div id="search" onclick="searchm()"></div>
-                </div>
-                
-                <div id="leftmenu">
-                    <div id="pageright" onclick="gotoright()"></div>
-                </div>
-                <div id="rightmenu">
-                    <div id="pageleft" onclick="gotoleft()"></div>
-                    <ul id="songbox">
-                    </ul>
+        <div id="musicplayerback"></div>
+            <div id="musicplayer">
+                <div id="playmenu">
+                    <div id="playertop">
+                        <input id="postinput">
+                        <div id="search" onclick="searchm()"></div>
+                    </div>
+                    
+                    <div id="leftmenu">
+                        <div id="pageright" onclick="gotoright()"></div>
+                    </div>
+                    <div id="rightmenu">
+                        <div id="pageleft" onclick="gotoleft()"></div>
+                        <ul id="songbox">
+                        </ul>
 
+                    </div>
                 </div>
+                <div id="closebtn" onclick="hideplayer()"></div>
+                <div id="songcover"></div>
+                <div id="songname">none</div>
+                <div id="authur">none</div>
+                <div id="duration">00:00/00:00</div>
+                <div id="durationbar">
+                    <div id="durations" onclick="setcurdu()"></div>
+                    <div id="progress" onclick="setcurdu()"></div>
+                </div>
+                <div id="playbtn" onclick="playmusic()"></div>
+                <div id="prevbtn" onclick="prev()"></div>
+                <div id="nextbtn" onclick="next()"></div>
+                <div id="replaybtn" onclick="replaymusic()"></div>
+                <div id="volumn" onclick="setvolumn()"></div>
+                <div id="curvolumn" onclick="setvolumn()"></div>
             </div>
-            <div id="closebtn" onclick="hideplayer()"></div>
-            <div id="songcover"></div>
-            <div id="songname">none</div>
-            <div id="authur">none</div>
-            <div id="duration">00:00/00:00</div>
-            <div id="durationbar">
-                <div id="durations" onclick="setcurdu()"></div>
-                <div id="progress" onclick="setcurdu()"></div>
-            </div>
-            <div id="playbtn" onclick="playmusic()"></div>
-            <div id="replaybtn" onclick="replaymusic()"></div>
-            <div id="volumn" onclick="setvolumn()"></div>
-            <div id="curvolumn" onclick="setvolumn()"></div>
         </div>
-        
         <div id="slogan" align="center">Yuki Starts to fall!</div>
         <div id="footer" align="center">adwadg on top!</div>
     </body>
