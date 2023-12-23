@@ -28,6 +28,22 @@
             <div id="setting" onclicl="showsetting"></div>
         </div>
         <div id="musicplayer">
+            <div id="playmenu">
+                <div id="playertop">
+                    <input id="postinput">
+                    <div id="search" onclick="searchm()"></div>
+                </div>
+                
+                <div id="leftmenu">
+                    <div id="pageright" onclick="gotoright()"></div>
+                </div>
+                <div id="rightmenu">
+                    <div id="pageleft" onclick="gotoleft()"></div>
+                    <ul id="songbox">
+                    </ul>
+
+                </div>
+            </div>
             <div id="closebtn" onclick="hideplayer()"></div>
             <div id="songcover"></div>
             <div id="songname">none</div>
@@ -39,16 +55,8 @@
             </div>
             <div id="playbtn" onclick="playmusic()"></div>
             <div id="replaybtn" onclick="replaymusic()"></div>
-            <div id="searchforsong" onclick="showposter()"></div>
             <div id="volumn" onclick="setvolumn()"></div>
             <div id="curvolumn" onclick="setvolumn()"></div>
-        </div>
-        <div id="poster">
-            <div id="closebtn" onclick="hideposter()"></div>
-            <input id="postinput" placeholder="song name...">
-            <div id="search" onclick="searchm()"></div>
-            <ul id="songbox">
-            </ul>
         </div>
         
         <div id="slogan" align="center">Yuki Starts to fall!</div>
