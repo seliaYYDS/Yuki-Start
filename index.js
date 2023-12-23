@@ -3,6 +3,11 @@ var curengine="baidu";
 const music = new Audio("")
 music.loop=false;
 var musicstate = 0;
+var playlist = [];
+var playing = 0;
+var playend = 0;
+
+playlist.a
 
 function disptime(){  
     var today=new Date();  
@@ -53,15 +58,15 @@ function crawl(){
     xml.open("GET","https://v1.hitokoto.cn");
     xml.send(null);
     xml.onload = function(){
-        console.log(this.status)
+        //console.log(this.status)
         var data = JSON.parse(xml.responseText);
         slogan = data.hitokoto;
-        console.log(slogan)
+        //onsole.log(slogan)
         document.getElementById("slogan").innerHTML=slogan;
     }
 
     xml.onerror = function(error){
-        console.log(error)
+        //console.log(error)
     }
    
 }
@@ -71,13 +76,13 @@ function changeengine(){
     if(curengine=="bing") document.getElementById("ename").innerHTML="bilibili";
     if(curengine=="bilibili") document.getElementById("ename").innerHTML="baidu";
     curengine = document.getElementById("ename").textContent;
-    console.log(curengine)
+    //console.log(curengine)
 }
 
 function search(){
     var url;
     var keywrod = document.getElementById("inputbar").value;
-    console.log(keywrod);
+    //console.log(keywrod);
     if(curengine == "baidu") url="https://www.baidu.com/s?wd=";
     if(curengine == "bing") url="https://cn.bing.com/search?q=";
     if(curengine == "bilibili") url="https://search.bilibili.com/all?keyword=";
@@ -88,10 +93,12 @@ function search(){
 function showplayer(){
     var player=document.getElementById("musicplayer");
     player.style.transform= "scale(1)";
+    document.getElementById("musicplayerback").style.transform= "scale(1)";
 }
 function hideplayer(){
     var player=document.getElementById("musicplayer");
     player.style.transform= "scale(0)";
+    document.getElementById("musicplayerback").style.transform= "scale(0)";
 }
 
 function refreshprogress(){
@@ -117,13 +124,13 @@ function playmusic(){
     var playbtn = document.getElementById("playbtn");
     
     if(musicstate == 0){
-        console.log(musicstate);
+        //console.log(musicstate);
         musicstate=1;
         music.play();
         playbtn.style.backgroundImage = "url('img/pause.png')";
     }
     else if(musicstate==1){
-        console.log(musicstate);
+        //console.log(musicstate);
         musicstate=0;
         music.pause();
         playbtn.style.backgroundImage = "url('img/play.png')";
@@ -140,9 +147,9 @@ function searchmusic(keyword){
     xml.open("GET","https://www.yukimusicapi.love/search?keywords="+keyword);
     xml.send();
     xml.onload = function(){
-        console.log(this.status)
+        //console.log(this.status)
         var data = JSON.parse(xml.responseText);
-        console.log(data)
+        //console.log(data)
         var songlsit = document.getElementById("songbox");
         if(songlsit.hasChildNodes){
             while (songlsit.firstChild) {
@@ -172,6 +179,19 @@ function searchmusic(keyword){
             let curid = songid;
             cursong.onclick = function(){
                 postmusic(curid);
+                //console.log(playing + "===============")
+                if(playlist[playing]==null){
+                    //console.log("null-----------");
+                    playlist[playing] = curid;
+                    playing++;
+                    playend++;
+                }
+                else{
+                        //console.log("not")
+                        playlist[playend] = curid;
+                        playend++;
+                        playing=playend;
+                }
                 console.log(curid);
             }
             songlsit.appendChild(cursong);
@@ -181,19 +201,36 @@ function searchmusic(keyword){
     } 
 }
 
+function prev(){
+    if(playing!=1){
+        //console.log(playing);
+        //console.log(playing-2)
+        postmusic(playlist[playing-2]);
+        playing-=1;
+    }
+}
+
+function next(){
+    if(playlist[playing]!=null){
+        //console.log(playing)
+        postmusic(playlist[playing]);
+        playing+=1;
+    }
+}
 
 
 function postmusic(songid){
         var xmlll = new XMLHttpRequest;
         var data
+
         xmlll.open("GET","https://www.yukimusicapi.love/song/detail?ids="+songid);
         xmlll.send();
         xmlll.onload = function(){
-            console.log(this.status)
+            //console.log(this.status)
             data = JSON.parse(xmlll.responseText);
-            console.log(data);
+            //console.log(data);
             var coverurl = data.songs[0].al.picUrl;
-            console.log(coverurl);
+            //console.log(coverurl);
             document.getElementById("songcover").style.backgroundImage = "url(" + coverurl + ")";
             var songname=data.songs[0].name;
             var authur = data.songs[0].ar[0].name;
@@ -207,17 +244,17 @@ function postmusic(songid){
             if(data.songs[0].ar[8]) authur+="/" + data.songs[0].ar[8].name;
             if(data.songs[0].ar[9]) authur+="/" + data.songs[0].ar[9].name;
             document.getElementById("songname").innerHTML = songname;
-            console.log(authur);
+            //console.log(authur);
             document.getElementById("authur").innerHTML = authur;
         }
         var xmll = new XMLHttpRequest;
         xmll.open("GET","https://www.yukimusicapi.love/song/url?id="+songid);
         xmll.send();
         xmll.onload = function(){
-            console.log(this.status)
+           // console.log(this.status)
             var dataa = JSON.parse(xmll.responseText);
             var songurl = dataa.data[0].url;
-            console.log(dataa+"|"+songurl);
+            //console.log(dataa+"|"+songurl);
             music.src = songurl;
             music.play();
             musicstate=1;
@@ -234,19 +271,19 @@ document.addEventListener("mousemove",function(e){
 
 function setcurdu(){
     start = window.innerWidth/2 -400;
-    console.log(start);
+    //console.log(start);
     relativepos = (start - mouseX) *-1 -7.5;
-    console.log(relativepos);
+    //console.log(relativepos);
     var pros = (relativepos / 799).toFixed(2);
     music.currentTime = music.duration * pros;
-    console.log(pros);
+    //console.log(pros);
     //music.currentTime = music.duration * (((mouseX-64)/336).toFixed(3))
 }
 
 function setvolumn(){
     relativepos = ((window.innerWidth/2 - 400) -7.5 + 800 - 10 - mouseX +16) ;
     var vol = (relativepos / 200).toFixed(2);
-    console.log(vol);
+    //console.log(vol);
     document.getElementById("curvolumn").style.width = vol * 200+ "px";
     music.volume = vol;
 }
@@ -258,9 +295,9 @@ function lyric(songid){
     xml.open("GET","https://www.yukimusicapi.love/lyric?id="+songid)
     xml.send()
     xml.onload = function(){
-        console.log(xml.status);
+        //console.log(xml.status);
         var data = JSON.parse(xml.responseText);
-        console.log(data);
+       // console.log(data);
     }
 }
 
