@@ -16,7 +16,7 @@ body{
 }
 
 *{
-    z-index: 1;
+    z-index: 10;
     transition-duration: 0.3s;
     transition-timing-function:cubic-bezier(0.86, 0, 0.07, 1);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -88,6 +88,7 @@ body{
     width: 100%;
     height: 20px;
     color: rgba(255, 255, 255, 0.384);
+    z-index: 5;
 
 }
 #slogan:hover{
@@ -174,6 +175,7 @@ body{
     background-color: white;
 }
 #searchbtn{
+    cursor:pointer;
     backdrop-filter: blur(10px);
     transition-duration: 0.3s;
     transition-timing-function:linear;
@@ -291,6 +293,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
 
 
 #playmenu{
+    z-index: 8;
     transition-duration: 0.3s;
     transition-timing-function:ease-in-out;
     display: block;
@@ -320,6 +323,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     overflow: hidden;
 }
 #closebtn{
+    cursor:pointer;
     transition-duration: 0.3s;
     transition-timing-function:linear;
     display: block;
@@ -349,6 +353,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     left: 2.5px;
     bottom: 2.5px;
     border-radius: 5px;
+    z-index: 9;
 }
 #songname{
     display: block;
@@ -361,6 +366,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     overflow: hidden;
     color: rgb(47, 46, 46);
     font-family: sans-serif;
+    z-index: 10;
 }
 #authur{
     display: block;
@@ -371,6 +377,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     left: 70px;
     font-size: 90%;
     color: rgb(47, 46, 46);
+    z-index: 10;
     
 }
 #duration{
@@ -416,6 +423,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     background-color: #2e2e2e;
 }
 #playbtn{
+    cursor:pointer;
     z-index: 100;
     background-size: cover;
     background-position-x: center;
@@ -431,6 +439,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     
 }
 #prevbtn{
+    cursor:pointer;
     z-index: 100;
     background-size: cover;
     background-position-x: center;
@@ -446,6 +455,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     
 }
 #nextbtn{
+    cursor:pointer;
     z-index: 100;
     background-size: cover;
     background-position-x: center;
@@ -461,6 +471,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     
 }
 #replaybtn{
+    cursor:pointer;
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
@@ -486,7 +497,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     z-index: 100;
     bottom: 15px;
     right: 30px;
-    z-index: 10;
+    z-index: 7;
     background-image: url("img/search.png");
 }
 #playertop{
@@ -501,7 +512,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
 
 }
 #postinput{
-    z-index: 10;
+    z-index: 7;
     font-family: sans-serif;
     position: inherit;
     top: 10px;
@@ -521,7 +532,7 @@ box-shadow:  6px 6px 11px #a6a6a6,
     color: black;
 }
 #search{
-    z-index: 10;
+    z-index: 7;
      position: inherit;
      top: 10px;
      left: 10px;
@@ -593,10 +604,12 @@ box-shadow:  6px 6px 11px #a6a6a6,
     width: 200px;
     background-color: #6a6a6a;
     right: 10px;
+    z-index: 10;
     bottom: 5px;
     border-radius: 5px;
 }
 #curvolumn{
+    z-index: 10;
     display: block;
     position: inherit;
     height: 10px;
@@ -650,6 +663,172 @@ box-shadow:  6px 6px 11px #a6a6a6,
     right: 0px;
     background-color: #dfdfdf82;
 }
+#avater{
+    position: relative;
+    display: block;
+    left: 700px;
+    top: 5px;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background-color: #a6a6a6;
+    z-index: 7;
+    color: white;
+    font-size: 80%;
+}
+#avater:hover{
+    transition-duration: 0.1s;
+    transition-timing-function:ease-in-out;
+    transform: scale(1.2);
+}
+
+#loginbox{
+    transition-duration: 0.6s;
+    color: #a6a6a6;
+    transform: scale(0);
+    font-family: sans-serif;
+    z-index: 11;
+    position: absolute;
+    background-color: rgba(238, 238, 238, 0.725);
+    backdrop-filter: blur(20px);
+    height: 500px;
+    width: 400px;
+     border-radius: 30px;
+     left: calc(50% - 200px);
+     top: calc(50% - 250px);
+}
+#loginbox a{
+    
+    display: block;
+    font-size: 200%;
+    color: #585858;
+    font-family: sans-serif;
+}
+
+#login1{
+    outline: none;
+    position: inherit;
+    left: 20%;
+    top: 100px;
+    width: 60%;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    border-bottom: solid 3px;
+    border-bottom-color: #a6a6a6;
+    font-family: sans-serif;
+    font-size: 130%;
+    
+}
+#login2{
+    
+    outline: none;
+    position: inherit;
+    left: 20%;
+    top: 170px;
+    width: 60%;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    border-bottom: solid 3px;
+    border-bottom-color: #a6a6a6;
+    font-family: sans-serif;
+    font-size: 130%;
+}
+#login1:hover{
+    width: 80%;
+    left: 10%;
+}
+#login2:hover{
+    width: 80%;
+    left: 10%;
+    
+}
+#login1:focus{
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    left: 10%;
+}
+#login2:focus{
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    left: 10%;
+}
+#loginbtn{
+    cursor:pointer;
+    display: block;
+    position: inherit;
+    bottom: 10px;
+    right: 10px;
+    width: 70px;
+    height: 40px;
+    border-radius: 30px;
+    background-color: #a6a6a6;
+}
+#loginbtn:hover{
+    background-color:rgb(130, 255, 255);
+}
+#logoutbtn{
+    cursor:pointer;
+    z-index: 10;
+    display: block;
+    position: inherit;
+    bottom: 30px;
+    left: 10px;
+    width: 20px;
+    height: 5px;
+    background-color: transparent;
+    color: rgb(148, 148, 148);
+    font-size: 120%;
+    font-family: sans-serif;
+}
+#logoutbtn:hover{
+    color: black;
+}
+#pullup{
+    transition-duration: 0.2s;
+    transition-timing-function:linear;
+    z-index: 10;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    position: inherit;
+    display: block;
+    height: 55px;
+    width: 55px;
+    background-color: transparent;
+    left: 2.5px;
+    bottom: 2.5px;
+    border-radius: 5px;
+}
+#pullup:hover{
+    background-color: rgba(154, 154, 154, 0.293);
+    backdrop-filter: blur(10px);
+    background-image: url("img/pullup.png");
+}
+#pullupcover{
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    background-color: white;
+    display: block;
+    z-index: 8;
+
+}
+
+
+
+
+
+
+
+
+
+
 
 @keyframes rotate{
     100%{
