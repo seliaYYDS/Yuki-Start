@@ -6,8 +6,71 @@ var musicstate = 0;
 var playlist = [];
 var playing = 0;
 var playend = 0;
+var usercookie = "";
+var useruid = "";
+var useravater = "";
 
 playlist.a
+
+
+
+function login(mode){
+    var code;
+    var user;
+    var url="";
+    user=document.getElementById("login1").value;
+    code=document.getElementById("login2").value;
+    document.getElementById("login1").value = "";
+    document.getElementById("login2").value = "";
+    console.log(user + "|" + code);
+    url = "https://www.yukimusicapi.love/login/cellphone?phone=" + user + "&password="+code;
+    /*if(mode == "phone") url = "https://www.yukimusicapi.love/login/cellphone?phone=" + user + "&password="+code;
+    else if(mode == "phonecode") url = "https://www.yukimusicapi.love/login/cellphone?phone=" + user + "&password="+code;
+    else if(mode == "email") url = "https://www.yukimusicapi.love/login/?email=" + user + "&password="+code;*/
+    var features = "height=200, width=200, top=100, left=100, toolbar=no, menubar=no,scrollbars=no,resizable=no, location=no, status=no";
+        var logwind = window.open(url,"closeme",features);
+        setTimeout (function () { 
+            if (logwind.closed) {
+                console.log("loged in");
+            } else {
+                logwind.close();
+            }
+        }, 3000);
+}
+
+function logout(){
+    var features = "height=200, width=200, top=100, left=100, toolbar=no, menubar=no,scrollbars=no,resizable=no, location=no, status=no";
+    var logwind = window.open("https://www.yukimusicapi.love/logout","closeme",features);
+    setTimeout (function () { 
+        if (logwind.closed) {
+            console.log("loged out");
+        } else {
+            logwind.close();
+        }
+    }, 2000);
+}
+
+function getuser(){
+    var xml = new XMLHttpRequest;
+    xml.open("GET","https://www.yukimusicapi.love/user/account?cookie=" + usercookie);
+    xml.send();
+    xml.onload = function(){
+        var data = JSON.parse(xml.responseText);
+        console.log(data);
+        useruid = data.profile.userId;
+        useravater = data.profile.avaterUrl;
+        console.log(useruid);
+    }
+}
+
+function showloginpage(){
+    document.getElementById("loginbox").style.transform = "scale(1.0)";
+}
+function hideloginpage(){
+    document.getElementById("loginbox").style.transform = "scale(0)";
+}
+
+
 
 function disptime(){  
     var today=new Date();  
@@ -99,6 +162,59 @@ function hideplayer(){
     var player=document.getElementById("musicplayer");
     player.style.transform= "scale(0)";
     document.getElementById("musicplayerback").style.transform= "scale(0)";
+}
+
+var pullstate = false;
+
+function pullup(){
+    var cover = document.getElementById("songcover");
+    var songname = document.getElementById("songname");
+    var authur = document.getElementById("authur");
+    var pullup = document.getElementById("pullup");
+    
+    if (!pullstate) 
+    {
+        document.getElementById("pullupcover").style.top = "0%";
+        cover.style.bottom = "180px";
+        cover.style.left = "20px";
+        cover.style.width = "350px";
+        cover.style.height = "350px";
+        cover.style.borderRadius = "15px";
+        songname.style.left = "20px";
+        songname.style.bottom = "135px";
+        songname.style.fontSize = "190%";
+        songname.style.width = "300px";
+        songname.style.height = "50px";
+        authur.style.width = "200px";
+        authur.style.height = "100px";
+        authur.style.fontSize = "100%";
+        authur.style.bottom = "50px";
+        authur.style.left = "20px"
+        pullup.style.backgroundImage = "url('img/pullup.png')";
+        pullup.style.transform = "rotate(180deg)"
+        pullstate = true;
+    }
+    else{
+        document.getElementById("pullupcover").style.top = "100%";
+        cover.style.bottom = "2.5px";
+        cover.style.left = "2.5px";
+        cover.style.width = "55px";
+        cover.style.height = "55px";
+        cover.style.borderRadius = "5px";
+        songname.style.left = "70px";
+        songname.style.bottom = "40px";
+        songname.style.fontSize = "110%";
+        songname.style.width = "500px";
+        songname.style.height = "20px";
+        authur.style.width = "300px";
+        authur.style.height = "20px";
+        authur.style.fontSize = "90%";
+        authur.style.bottom = "20px";
+        authur.style.left = "70px"
+        pullup.style.backgroundImage = "";
+        pullup.style.transform = "rotate(0deg)"
+        pullstate = false;
+    }
 }
 
 function refreshprogress(){
@@ -248,7 +364,10 @@ function postmusic(songid){
             document.getElementById("authur").innerHTML = authur;
         }
         var xmll = new XMLHttpRequest;
-        xmll.open("GET","https://www.yukimusicapi.love/song/url?id="+songid);
+        console.log();
+        xmll.withCredentials = true;
+        
+        xmll.open("GET","https://www.yukimusicapi.love/song/url?id="+songid, true);
         xmll.send();
         xmll.onload = function(){
            // console.log(this.status)
