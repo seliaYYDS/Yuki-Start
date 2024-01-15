@@ -33,6 +33,7 @@
                     <div id="playertop">
                         <input id="postinput">
                         <div id="search" onclick="searchm()"></div>
+                        <div id="avater" onclick="showloginpage()" align="center">none</div>
                     </div>
                     
                     <div id="leftmenu">
@@ -42,11 +43,11 @@
                         <div id="pageleft" onclick="gotoleft()"></div>
                         <ul id="songbox">
                         </ul>
-
                     </div>
                 </div>
                 <div id="closebtn" onclick="hideplayer()"></div>
                 <div id="songcover"></div>
+                <div id="pullup" onclick="pullup()"></div>
                 <div id="songname">none</div>
                 <div id="authur">none</div>
                 <div id="duration">00:00/00:00</div>
@@ -60,7 +61,16 @@
                 <div id="replaybtn" onclick="replaymusic()"></div>
                 <div id="volumn" onclick="setvolumn()"></div>
                 <div id="curvolumn" onclick="setvolumn()"></div>
+                <div id="pullupcover"></div>
             </div>
+        </div>
+        <div id="loginbox" >
+            <a align="center">Login</a>
+            <div id="closebtn" onclick="hideloginpage()"></div>
+            <input id="login1" placeholder="phone number" class="linput">
+            <input id="login2" placeholder="password" class="linput">
+            <div id="loginbtn" onclick="login()"></div>
+            <div id="logoutbtn" onclick="logout()">logout</div>
         </div>
         <div id="slogan" align="center">Yuki Starts to fall!</div>
         <div id="footer" align="center">adwadg on top!</div>
