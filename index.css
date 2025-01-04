@@ -820,9 +820,42 @@ box-shadow:  6px 6px 11px #a6a6a6,
 
 }
 
+#playlistBox{
+    background-color: #ff0000;
+    display: block;
+    position: inherit;
+    left: 1%;
+    top: 0%;
+    width: 20%;
+    height: 95%;
 
+}
+#inputplaylist{
+    background-color: rgb(217, 217, 217);
+    outline: none;
+    width: 200px;
+    left: 10px;
+    position: inherit;
+    top: 10px;
+    border: none;
+    height: 30px;
+    border-radius: 30px;
+}
+#searchforplaylist{
+    cursor: pointer;
+    display: block;
+    position: inherit;
+    left: 190px;
+    height: 32px;
+    width: 39px;
+    top: 10px;
+    background-color: #7e7e7e;
+    border-radius: 20px;
+}
 
-
+#searchforplaylist:hover{
+    background-color: rgb(163, 255, 255);
+}
 
 
 
