@@ -164,6 +164,7 @@ function hideplayer(){
     document.getElementById("musicplayerback").style.transform= "scale(0)";
 }
 
+
 var pullstate = false;
 
 function pullup(){
@@ -227,13 +228,19 @@ function refreshprogress(){
     ttimem = ttimem - ttimem%1;
     ttimes = ttime%60;
     if(times <10) times = "0"+times; 
-    if(ttimes <10) ttimes = "0"+ttimes; 
+    if(ttimes <10) ttimes = "0"+ttimes;
     document.getElementById("duration").innerHTML = timem+":"+times+"/"+ttimem+":"+ttimes;
     document.getElementById("progress").style.width = ((music.currentTime/music.duration * 100).toFixed(1)) + "%";
     if (music.currentTime == music.duration){
-        musicstate=0;
+        /*musicstate=0;
         music.pause();
-        playbtn.style.backgroundImage = "url('img/play.png')";
+        playbtn.style.backgroundImage = "url('img/play.png')";*/
+        next();
+        if(playlist[playing]==null){
+            musicstate=0;
+            music.pause();
+            playbtn.style.backgroundImage = "url('img/play.png')";
+        }
     }
 }
 function playmusic(){
@@ -315,6 +322,33 @@ function searchmusic(keyword){
             
         }        
     } 
+}
+
+function getplaylist(){
+    id = document.getElementById("inputplaylist").value;
+    var xml = new XMLHttpRequest;
+    xml.open("GET","https://www.yukimusicapi.love/playlist/track/all?id=" + id + "&limit=999&offset=0");
+    xml.send();
+    xml.onload = function(){
+        var data = JSON.parse(xml.responseText);
+        console.log(data);
+        if(data.code!=200){
+            console.log("not found");
+        }
+        else{
+            playlist = [];
+            playend=0;
+            playing=0;
+            for(i=0;i<data.songs.length;i++){
+                playlist[i] = data.songs[i].id;
+                console.log(playlist[i]);
+                playend += 1;
+             }
+             postmusic(playlist[0]);
+             playing=1;
+        }
+    }
+
 }
 
 function prev(){
@@ -412,7 +446,7 @@ function setvolumn(){
 function lyric(songid){
     xml = new XMLHttpRequest;
     xml.open("GET","https://www.yukimusicapi.love/lyric?id="+songid)
-    xml.send()
+    xml.send();
     xml.onload = function(){
         //console.log(xml.status);
         var data = JSON.parse(xml.responseText);
@@ -444,7 +478,18 @@ function onupdate(){
     disptime();
     refreshprogress();
 }
-function onload(){
+function getuserlist(){
+    console.log("2");
+    var xm = new XMLHttpRequest;
+    xm.open("GET","https://www.yukimusicapi.love/user/account");
+    xm.send();
+    xm.onload=function(){
+        var data = JSON.parse(xm.responseText);
+        console.log(data);
+    }
+}
+function docload(){
+
     crawl()
 }
 var mytime = setInterval("onupdate()",10); 
